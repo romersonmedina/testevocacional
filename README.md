@@ -2,7 +2,7 @@
 
 Teste vocacional on-line para alunos do ensino médio, baseado no modelo RIASEC (John Holland).
 
-**Acesse:** https://SEU-USUARIO.github.io/teste-vocacional/
+**Acesse:** https://romersonmedina.github.io/teste-vocacional/
 
 ## O que o teste faz
 
