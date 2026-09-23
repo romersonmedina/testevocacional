@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<meta name="description" content="Teste vocacional para alunos da 3ª série: descubra seu perfil, cursos que combinam com você e onde estudar.">
+<meta property="og:title" content="Teste Vocacional – 3ª série">
+<meta property="og:description" content="Descubra seu perfil, os cursos que combinam com você e onde estudar.">
+<title>Teste Vocacional – 3ª série</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F1F4FA;--card:#FFFFFF;--ink:#1B2340;--muted:#5B6480;--line:#D9DEEA;--warn:#B54708;--warnbg:#FFF4E5;
+--R:#E4572E;--I:#2E86AB;--A:#A23B72;--S:#E09A1B;--E:#2F9E62;--C:#6C5B9B;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121726;--card:#1C2336;--ink:#EEF1F8;--muted:#A3ABC2;--line:#2E3750;--warn:#FDB022;--warnbg:#3A2A10}}
+:root[data-theme="dark"]{--bg:#121726;--card:#1C2336;--ink:#EEF1F8;--muted:#A3ABC2;--line:#2E3750;--warn:#FDB022;--warnbg:#3A2A10}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:400 17px/1.5 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;line-height:1.15;margin:0}
+main{max-width:660px;margin:0 auto;padding:20px 18px 48px}
+main.wide{max-width:1000px}
+.screen{display:none}.screen.on{display:block}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--I);outline-offset:2px}
+a{color:var(--I)}
+.hex-mark{display:block;margin:10px auto 18px;width:110px;color:var(--ink)}
+h1{font-size:clamp(34px,9vw,48px);font-weight:800;text-align:center}
+h2{font-size:26px;margin:34px 0 8px}
+.lead{text-align:center;color:var(--muted);max-width:30em;margin:12px auto 26px}
+label{display:block;font-weight:700;margin:14px 0 6px}
+input,textarea,select{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:inherit}
+textarea{min-height:88px;resize:vertical}
+.primary{display:block;width:100%;margin-top:24px;padding:16px;border:0;border-radius:14px;background:var(--ink);color:var(--bg);font-weight:700;font-size:18px}
+.ghost{background:none;border:0;color:var(--muted);padding:10px 0;font-weight:500}
+.link{background:none;border:0;color:var(--muted);text-decoration:underline;padding:6px 0;font-size:15px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:22px;color:var(--muted);font-size:15px}
+.box b{color:var(--ink)}
+.center{text-align:center}
+/* pergunta */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.count{font-weight:700;font-variant-numeric:tabular-nums}
+.part{color:var(--muted);font-size:14px;font-weight:500}
+.bar{height:8px;border-radius:8px;background:var(--line);overflow:hidden;margin:10px 0 34px}
+.bar i{display:block;height:100%;background:var(--ink);width:0;transition:width .25s}
+.q{font-family:"Bricolage Grotesque",Figtree,sans-serif;font-weight:600;font-size:clamp(24px,6.4vw,32px);line-height:1.2;min-height:4.8em}
+.opts{display:grid;gap:12px;margin-top:22px}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;padding:16px;border:2px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);font-weight:500;transition:border-color .15s,transform .1s}
+.opt:active{transform:scale(.98)}
+.opt .dot{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--bg)}
+.opt.sel{border-color:var(--ink)}.opt.sel .dot{background:var(--ink);color:var(--bg)}
+@media (hover:hover){.opt:hover{border-color:var(--muted)}}
+.alert{background:var(--warnbg);border-left:6px solid var(--warn);border-radius:12px;padding:16px 18px;margin:22px 0}
+.alert h3{color:var(--warn);font-size:20px;margin-bottom:6px}
+/* resultado */
+.who{text-align:center;color:var(--muted);margin-top:6px}
+.code{display:flex;justify-content:center;gap:10px;margin:22px 0 6px}
+.code span{width:72px;height:72px;border-radius:18px;display:grid;place-items:center;color:#fff;font:800 40px "Bricolage Grotesque",sans-serif}
+.codecap{text-align:center;font-weight:700;margin-bottom:8px}
+svg.radar{display:block;width:100%;max-width:380px;margin:0 auto}
+.rows{margin:18px 0 8px}
+.row{display:grid;grid-template-columns:118px 1fr 44px;align-items:center;gap:10px;margin:8px 0;font-size:15px}
+.track{height:12px;border-radius:12px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;border-radius:12px}
+.row b{text-align:right;font-variant-numeric:tabular-nums}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:16px 0}
+.panel h3{font-size:20px;margin-bottom:8px}
+.panel p{margin:6px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+.chip{background:var(--bg);border:1px solid var(--line);border-radius:30px;padding:6px 12px;font-weight:700;font-size:15px}
+.tips{margin:10px 0 0;padding-left:20px}.tips li{margin:6px 0}
+.prof{background:var(--card);border-radius:16px;padding:18px;margin:14px 0;border-left:8px solid var(--c)}
+.prof h3{font-size:22px;color:var(--c)}
+.prof p{margin:6px 0 0}
+.prof h4{margin:16px 0 6px;font-size:16px}
+details.prof summary{cursor:pointer;font:600 19px "Bricolage Grotesque",sans-serif;color:var(--c)}
+.courses{list-style:none;padding:0;margin:0}
+.courses li{padding:9px 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.courses li:first-child{border-top:0}
+.courses .cn{font-weight:700}
+.courses .dur{color:var(--muted);font-size:14px}
+.tag{font-size:12.5px;font-weight:700;border-radius:6px;padding:2px 7px;background:var(--ink);color:var(--bg)}
+.courses a{font-size:14px;margin-left:auto}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.actions button,.actions a{padding:14px;border-radius:14px;border:1.5px solid var(--ink);background:none;color:var(--ink);font-weight:700;text-align:center;text-decoration:none;font-size:16px}
+.actions .fill{background:var(--ink);color:var(--bg)}
+.actions .wide{grid-column:1/-1}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:30px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
+.toast.on{opacity:1}
+/* professor */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.stat b{display:block;font:800 30px "Bricolage Grotesque",sans-serif}
+.stat span{color:var(--muted);font-size:14px}
+.tablewrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:820px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{position:sticky;top:0;background:var(--card);font-weight:700;cursor:pointer;white-space:nowrap}
+td.num{text-align:center;font-variant-numeric:tabular-nums}
+td.hi{font-weight:800}
+.flag{color:var(--warn);font-weight:700}
+.codepill{display:inline-flex;gap:3px}.codepill span{color:#fff;border-radius:5px;padding:1px 6px;font-weight:800}
+.plan{font-size:13.5px;color:var(--muted);margin-top:4px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-top:14px}
+.toolbar>div{flex:1 1 180px}
+.toolbar button{padding:12px 16px;border-radius:12px;border:1.5px solid var(--ink);background:none;color:var(--ink);font-weight:700}
+.toolbar button.fill{background:var(--ink);color:var(--bg)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{:root{--bg:#fff;--card:#fff;padding:0}.actions,.ghost,.link,.toast,.noprint{display:none!important}details.prof>*{display:block}textarea{border:1px solid #999;min-height:0}}
+</style>
+</head>
+<body>
+<main id="main">
+
+<!-- INÍCIO -->
+<section class="screen on" id="s-inicio">
+  <svg class="hex-mark" viewBox="0 0 120 104" aria-hidden="true"><polygon points="30,2 90,2 118,52 90,102 30,102 2,52" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+  <h1>Teste Vocacional</h1>
+  <p class="lead">Duas partes: 48 frases sobre o que você gosta de fazer e 10 sobre o que você quer da sua profissão. No final, você vê seu perfil, os cursos que combinam com você e onde estudar. Leva uns 10 minutos.</p>
+  <label for="nome">Seu nome completo</label>
+  <input id="nome" autocomplete="name" placeholder="Ex.: Ana Souza">
+  <label for="turma">Turma</label>
+  <input id="turma" placeholder="Ex.: 3º A">
+  <div class="box">Para cada frase, escolha:<br><b>0</b>: não tem nada a ver comigo<br><b>1</b>: às vezes / mais ou menos<br><b>2</b>: tem tudo a ver comigo<br><br>Não existe resposta certa. Responda pensando em como você <b>é</b>, não em como gostaria de ser. Leia com calma: marcar tudo igual deixa o resultado sem sentido.</div>
+  <p class="flag" id="erroNome" hidden>Preencha seu nome e sua turma para começar.</p>
+  <button class="primary" id="comecar">Começar o teste</button>
+  <button class="ghost" id="continuar" hidden style="width:100%">Continuar de onde parei</button>
+  <p class="center" style="margin-top:34px"><button class="link" id="irProf">Área do professor</button></p>
+</section>
+
+<!-- PERGUNTAS -->
+<section class="screen" id="s-teste">
+  <div class="top"><button class="ghost" id="voltar">‹ Voltar</button><span class="part" id="part"></span><span class="count" id="count"></span></div>
+  <div class="bar"><i id="prog"></i></div>
+  <p class="q" id="q"></p>
+  <div class="opts" id="opts"></div>
+</section>
+
+<!-- INTERVALO PARTE 2 -->
+<section class="screen" id="s-parte2">
+  <h1 style="font-size:clamp(30px,8vw,40px);margin-top:30px">Parte 1 concluída</h1>
+  <p class="lead">Agora, 10 frases rápidas sobre o que você quer da sua futura profissão. Aqui a escala muda:</p>
+  <div class="box"><b>0</b>: pouco importante para mim<br><b>1</b>: importante<br><b>2</b>: muito importante</div>
+  <button class="primary" id="iniciarP2">Continuar</button>
+</section>
+
+<!-- ALERTA DE CONSISTÊNCIA -->
+<section class="screen" id="s-alerta">
+  <div class="alert"><h3 id="alertaTit"></h3><p id="alertaTxt" style="margin:0"></p></div>
+  <button class="primary" id="revisar">Revisar minhas respostas</button>
+  <button class="ghost" id="verMesmo" style="width:100%;margin-top:8px">Ver o resultado mesmo assim</button>
+</section>
+
+<!-- RESULTADO -->
+<section class="screen" id="s-result">
+  <h1 style="font-size:clamp(30px,8vw,40px)">Seu resultado</h1>
+  <p class="who" id="who"></p>
+  <div class="alert" id="flagBox" hidden><h3>Atenção</h3><p style="margin:0" id="flagTxt"></p></div>
+  <div class="code" id="code"></div>
+  <p class="codecap" id="codecap"></p>
+  <svg class="radar" id="radar" viewBox="0 0 360 330" role="img" aria-label="Gráfico hexagonal com a pontuação de cada área"></svg>
+  <div class="rows" id="rows"></div>
+  <div class="panel" id="combo"></div>
+  <div class="panel" id="valores"></div>
+  <h2>Suas áreas mais fortes</h2>
+  <p class="muted small" style="margin:0">Cursos marcados com <span class="tag">UFES Alegre</span> ou <span class="tag">IFES Alegre</span> são públicos e gratuitos aqui na região. Os demais existem em outras instituições do estado e do país: pesquise no Sisu e no e-MEC.</p>
+  <div id="fortes"></div>
+  <h2>As outras áreas</h2>
+  <div id="outras"></div>
+  <h2>Como entrar num curso</h2>
+  <div class="panel">
+    <p><b>ENEM</b> é a porta de entrada principal. Quem conclui o ensino médio em escola pública tem direito à isenção da taxa.</p>
+    <p><b>Sisu</b> usa a nota do ENEM para vagas gratuitas em instituições públicas, como UFES e IFES.</p>
+    <p><b>ProUni</b> dá bolsas de 50% ou 100% em faculdades particulares, também pela nota do ENEM, para quem tem renda familiar baixa.</p>
+    <p><b>FIES</b> financia a mensalidade de faculdades particulares, para pagar depois de formado.</p>
+    <p><b>Processos seletivos próprios</b>: o IFES, por exemplo, abre editais próprios para graduação e para cursos técnicos. Fique de olho no site de cada campus.</p>
+    <p class="muted small">Sobre salários: eles variam muito com região, experiência e especialização. Use o link "ver salário" ao lado de cada curso para consultar valores atualizados.</p>
+  </div>
+  <h2>Meu plano de ação</h2>
+  <div class="panel">
+    <label for="p1" style="margin-top:0">Um curso ou profissão que quero pesquisar melhor</label>
+    <textarea id="p1" rows="2"></textarea>
+    <label for="p2">Uma pessoa da área com quem posso conversar</label>
+    <textarea id="p2" rows="2"></textarea>
+    <label for="p3">O que vou fazer até o fim do ano para testar esse caminho</label>
+    <textarea id="p3" rows="2"></textarea>
+  </div>
+  <div class="actions">
+    <a class="fill wide" id="zap" target="_blank" rel="noopener">Enviar para o professor pelo WhatsApp</a>
+    <button id="copiar">Copiar resultado</button>
+    <button id="imprimir">Imprimir / PDF</button>
+  </div>
+  <p class="note muted small" style="margin-top:24px">Este teste é um ponto de partida para conversa e reflexão, não um diagnóstico. Interesses mudam com o tempo e com novas experiências. Converse com seu professor, sua família e com pessoas que trabalham nas áreas que chamaram sua atenção.</p>
+  <button class="ghost" id="refazer" style="width:100%">Refazer o teste</button>
+</section>
+
+<!-- PROFESSOR -->
+<section class="screen" id="s-prof">
+  <div class="top"><button class="ghost" id="profVoltar">‹ Voltar ao teste</button></div>
+  <h1 style="text-align:left;font-size:clamp(30px,7vw,40px)">Painel da turma</h1>
+  <p class="muted" style="margin:8px 0 0">Cole abaixo as mensagens que os alunos enviaram (pode colar várias de uma vez, até a conversa inteira do WhatsApp). O painel encontra os resultados sozinho e ignora o resto. Os dados ficam salvos só neste aparelho.</p>
+  <textarea id="cola" rows="5" placeholder="Cole aqui as mensagens dos alunos"></textarea>
+  <div class="toolbar noprint">
+    <button class="fill" id="addRes">Adicionar resultados</button>
+    <span id="addMsg" class="muted small"></span>
+  </div>
+  <div id="painel"></div>
+</section>
+
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- DADOS ---------- */
+const UA="UFES Alegre",IA="IFES Alegre";
+const AREAS=[
+{k:"R",n:"Realista",apel:"Prático",
+ items:["Gosto de montar, desmontar ou consertar coisas (aparelhos, bicicletas, móveis).","Prefiro atividades em que uso as mãos a ficar só lendo ou escrevendo.","Gosto de trabalhar com ferramentas, máquinas ou equipamentos.","Tenho curiosidade sobre como funcionam motores, construções ou aparelhos.","Gosto de atividades ao ar livre, com a natureza, plantas ou animais.","Prefiro ver o resultado concreto do meu trabalho (algo pronto e funcionando).","Gosto de esportes ou atividades que exigem esforço físico e coordenação.","Eu me daria bem trabalhando em campo: numa obra, oficina, fazenda ou na rua."],
+ como:"Aprende fazendo, gosta de ação, de resultados concretos e de trabalhar com as mãos, máquinas, natureza ou o próprio corpo.",
+ sup:[["Agronomia","5 anos",[UA,IA],"agrônomo"],["Medicina Veterinária","5 anos",[UA],"médico veterinário"],["Zootecnia","5 anos",[UA],"zootecnista"],["Engenharia Florestal","5 anos",[UA],"engenheiro florestal"],["Engenharia Industrial Madeireira","5 anos",[UA],"engenheiro madeireiro"],["Engenharia de Aquicultura","5 anos",[IA],"engenheiro de aquicultura"],["Tecnologia em Cafeicultura","3 anos",[IA],"tecnólogo em cafeicultura"],["Geologia","5 anos",[UA],"geólogo"],["Engenharia Civil","5 anos",[],"engenheiro civil"],["Engenharia Mecânica","5 anos",[],"engenheiro mecânico"],["Engenharia Elétrica","5 anos",[],"engenheiro eletricista"],["Educação Física","4 anos",[],"profissional de educação física"]],
+ tec:[["Agropecuária",[IA]],["Aquicultura",[IA]],["Agroindústria",[IA]],["Eletrotécnica",[]],["Mecânica",[]],["Edificações",[]],["Segurança do Trabalho",[]]],
+ prof:"Engenheiro(a), veterinário(a), agrônomo(a), eletricista, mecânico(a), piloto, bombeiro(a), personal trainer, técnico(a) agrícola."},
+{k:"I",n:"Investigativo",apel:"Analítico",
+ items:["Gosto de resolver problemas de lógica, enigmas ou desafios de matemática.","Fico curioso para entender o porquê das coisas.","Gosto de pesquisar a fundo um assunto que me interessa.","Tenho interesse por ciências (física, química, biologia).","Gosto de descobrir onde está o erro quando algo não funciona.","Prefiro pensar e analisar bem antes de tomar uma decisão.","Gosto de fazer experiências e testar ideias para ver o que acontece.","Gosto de ler, assistir ou ouvir conteúdos sobre ciência, saúde, história ou descobertas."],
+ como:"Curioso(a) e analítico(a), gosta de entender, investigar, pesquisar e resolver problemas complexos.",
+ sup:[["Medicina","6 anos",[],"médico"],["Odontologia","5 anos",[],"dentista"],["Farmácia","5 anos",[UA],"farmacêutico"],["Biomedicina","4 anos",[],"biomédico"],["Ciências Biológicas","4 anos",[UA,IA],"biólogo"],["Engenharia Química","5 anos",[UA],"engenheiro químico"],["Engenharia de Alimentos","5 anos",[UA],"engenheiro de alimentos"],["Ciência da Computação","4 anos",[UA],"desenvolvedor de software"],["Sistemas de Informação","4 anos",[UA],"analista de sistemas"],["Análise e Desenvolvimento de Sistemas","2,5 a 3 anos",[IA],"programador"],["Física","4 anos",[UA],"físico"],["Química","4 anos",[UA],"químico"],["Geografia","4 anos",[],"geógrafo"],["História","4 anos",[],"historiador"]],
+ tec:[["Informática",[IA]],["Análises Clínicas",[]],["Química",[]],["Meio Ambiente",[]],["Desenvolvimento de Sistemas",[]]],
+ prof:"Médico(a), dentista, farmacêutico(a), pesquisador(a), cientista, biólogo(a), perito(a), programador(a), analista de laboratório."},
+{k:"A",n:"Artístico",apel:"Criativo",
+ items:["Gosto de desenhar, pintar, fotografar ou editar imagens e vídeos.","Tenho facilidade para inventar ideias novas e diferentes.","Gosto de música, teatro, dança ou cinema, de fazer e não só de assistir.","Gosto de escrever textos, histórias, poesias ou roteiros.","Me incomoda seguir regras rígidas; prefiro liberdade para criar.","Presto atenção na aparência das coisas: cores, formas, estilo.","Eu gostaria de trabalhar criando coisas: roupas, objetos, ambientes, imagens ou músicas.","Gosto de me expressar de forma original (estilo, roupas, redes sociais)."],
+ como:"Criativo(a) e expressivo(a), valoriza liberdade, originalidade e gosta de se comunicar por imagens, sons e palavras.",
+ sup:[["Arquitetura e Urbanismo","5 anos",[],"arquiteto"],["Design","4 anos",[],"designer"],["Moda","4 anos",[],"estilista"],["Publicidade e Propaganda","4 anos",[],"publicitário"],["Jornalismo","4 anos",[],"jornalista"],["Cinema e Audiovisual","4 anos",[],"editor de vídeo"],["Artes Visuais","4 anos",[],"artista plástico"],["Música","4 anos",[],"músico"],["Letras","4 anos",[],"revisor de texto"],["Teatro","4 anos",[],"ator"],["Gastronomia (tecnólogo)","2 anos",[],"chef de cozinha"]],
+ tec:[["Design Gráfico",[]],["Multimídia",[]],["Produção de Moda",[]],["Comunicação Visual",[]],["Programação de Jogos Digitais",[]]],
+ prof:"Arquiteto(a), designer, estilista, fotógrafo(a), músico(a), ator/atriz, escritor(a), jornalista, chef de cozinha, ilustrador(a)."},
+{k:"S",n:"Social",apel:"Cuidador",
+ items:["Gosto de ajudar colegas quando eles têm dificuldade.","As pessoas costumam me procurar para desabafar ou pedir conselho.","Tenho paciência para explicar a mesma coisa várias vezes.","Me preocupo com o bem-estar das pessoas ao meu redor.","Gosto mais de trabalhar em grupo do que sozinho.","Me imagino trabalhando para cuidar da saúde ou da educação de outras pessoas.","Gosto de participar de projetos sociais, voluntariado ou ações na comunidade.","Percebo com facilidade quando alguém não está bem."],
+ como:"Empático(a) e acolhedor(a), gosta de ajudar, ensinar, cuidar e conviver com pessoas.",
+ sup:[["Licenciaturas (Matemática, Física, Química, Biologia)","4 anos",[UA],"professor"],["Pedagogia","4 anos",[],"pedagogo"],["Psicologia","5 anos",[],"psicólogo"],["Enfermagem","5 anos",[],"enfermeiro"],["Nutrição","4 a 5 anos",[UA],"nutricionista"],["Fisioterapia","5 anos",[],"fisioterapeuta"],["Fonoaudiologia","4 anos",[],"fonoaudiólogo"],["Terapia Ocupacional","4 anos",[],"terapeuta ocupacional"],["Serviço Social","4 anos",[],"assistente social"]],
+ tec:[["Enfermagem",[]],["Cuidados de Idosos",[]],["Nutrição e Dietética",[]],["Saúde Bucal",[]],["Radiologia",[]]],
+ prof:"Professor(a), psicólogo(a), enfermeiro(a), fisioterapeuta, nutricionista, assistente social, cuidador(a), orientador(a) educacional."},
+{k:"E",n:"Empreendedor",apel:"Líder",
+ items:["Gosto de liderar grupos e tomar a frente das decisões.","Tenho facilidade para convencer as pessoas das minhas ideias.","Penso em ter meu próprio negócio um dia.","Gosto de competir e de bater metas.","Fico à vontade falando em público ou apresentando trabalhos.","Tenho interesse em vender, negociar ou ganhar dinheiro com uma ideia.","Gosto de organizar eventos, festas ou campanhas.","Arrisco fazer coisas novas mesmo sem ter certeza de que vão dar certo."],
+ como:"Comunicativo(a) e ousado(a), gosta de liderar, convencer, negociar, assumir riscos e fazer as coisas acontecerem.",
+ sup:[["Administração","4 anos",[],"administrador"],["Direito","5 anos",[],"advogado"],["Economia","4 anos",[],"economista"],["Marketing","2 a 4 anos",[],"analista de marketing"],["Relações Internacionais","4 anos",[],"analista de relações internacionais"],["Comércio Exterior","2 a 4 anos",[],"analista de comércio exterior"],["Relações Públicas","4 anos",[],"relações públicas"],["Turismo","4 anos",[],"turismólogo"],["Gestão Comercial (tecnólogo)","2 anos",[],"gerente comercial"]],
+ tec:[["Administração",[]],["Vendas",[]],["Marketing",[]],["Comércio",[]],["Eventos",[]],["Logística",[]]],
+ prof:"Empresário(a), advogado(a), gerente, vendedor(a), corretor(a), político(a), promotor(a) de eventos, gestor(a) de equipes."},
+{k:"C",n:"Convencional",apel:"Organizador",
+ items:["Gosto de manter minhas coisas organizadas e no lugar.","Percebo detalhes que os outros deixam passar.","Gosto de seguir um passo a passo bem definido.","Tenho facilidade com números, contas e planilhas.","Gosto de fazer listas, cronogramas e planejar minha rotina.","Prefiro tarefas com regras claras a tarefas soltas.","Eu me daria bem cuidando de documentos, cadastros ou controle de estoque.","Gosto de conferir se está tudo certo antes de entregar um trabalho."],
+ como:"Organizado(a), detalhista e responsável, gosta de ordem, método, números e de fazer as coisas do jeito certo.",
+ sup:[["Ciências Contábeis","4 anos",[],"contador"],["Administração","4 anos",[],"administrador"],["Estatística","4 anos",[],"estatístico"],["Sistemas de Informação","4 anos",[UA],"analista de dados"],["Matemática","4 anos",[UA],"professor de matemática"],["Ciências Atuariais","4 anos",[],"atuário"],["Biblioteconomia","4 anos",[],"bibliotecário"],["Arquivologia","4 anos",[],"arquivista"],["Secretariado Executivo","4 anos",[],"secretário executivo"],["Gestão Pública (tecnólogo)","2 anos",[],"gestor público"],["Logística (tecnólogo)","2 anos",[],"analista de logística"]],
+ tec:[["Administração",[]],["Contabilidade",[]],["Secretariado",[]],["Logística",[]],["Serviços Jurídicos",[]],["Recursos Humanos",[]]],
+ prof:"Contador(a), auditor(a), analista financeiro(a), bancário(a), servidor(a) público(a), secretário(a), bibliotecário(a), analista de dados."}
+];
+const COMBO={RI:"Engenharias, Agronomia, Geologia, Medicina Veterinária, Oceanografia.",RA:"Arquitetura, Design de Produto, Fotografia, Gastronomia, Paisagismo.",RS:"Educação Física, Fisioterapia, Enfermagem, Bombeiro(a), Técnico(a) em esportes.",RE:"Agronegócio, Construção Civil, Logística, Gestão de obras, Empreender no campo.",RC:"Segurança do Trabalho, Topografia, Engenharia de Produção, Controle de Qualidade.",IA:"Arquitetura, Arqueologia, Jornalismo Científico, Design de Jogos, Museologia.",IS:"Medicina, Psicologia, Nutrição, Odontologia, Fonoaudiologia.",IE:"Economia, Direito, Engenharia de Produção, Gestão em Saúde, Consultoria.",IC:"Estatística, Farmácia, Análises Clínicas, Ciência da Computação, Ciências Atuariais.",AS:"Pedagogia, Licenciatura em Artes ou Música, Arteterapia, Terapia Ocupacional.",AE:"Publicidade, Marketing, Moda, Produção Cultural, Relações Públicas.",AC:"Design Gráfico, Editoração, Arquivologia, Desenho Técnico, Museologia.",SE:"Direito, Gestão de Pessoas (RH), Serviço Social, Turismo, Hotelaria.",SC:"Secretariado, Enfermagem, Gestão Escolar, Biblioteconomia, Administração Hospitalar.",EC:"Ciências Contábeis, Administração, Comércio Exterior, Gestão Pública, Finanças."};
+const VALORES=[
+ {k:"est",n:"Estabilidade",q:"Ter um emprego seguro, sem medo de ser demitido.",dica:"Concursos públicos existem em quase toda área: saúde, educação, agrárias, direito, administração, tecnologia. Uma graduação ou curso técnico abre a porta para concursos de nível médio e superior."},
+ {k:"sal",n:"Salário alto",q:"Ganhar bem, mesmo que o trabalho seja puxado.",dica:"Salário depende muito de especialização e experiência, não só do curso. Compare os valores pelo link \"ver salário\" e lembre que o começo de carreira costuma pagar bem menos que a média."},
+ {k:"aju",n:"Ajudar pessoas",q:"Sentir que meu trabalho melhora a vida de outras pessoas.",dica:"Saúde, educação e assistência social são o caminho mais direto, mas dá para ajudar pessoas em qualquer área: um agrônomo melhora a renda de produtores, um engenheiro garante casas seguras."},
+ {k:"pes",n:"Contato com pessoas",q:"Conversar e conviver com muita gente no dia a dia.",dica:"Prefira profissões de atendimento, ensino, vendas, saúde ou gestão de equipes. Se esse valor foi baixo, prefira trabalhos mais técnicos ou de análise."},
+ {k:"ar",n:"Trabalho fora do escritório",q:"Trabalhar ao ar livre ou em lugares diferentes, fora de uma mesa.",dica:"Agrárias, engenharias de campo, geologia, turismo, educação física e veterinária têm muito trabalho de campo."},
+ {k:"cri",n:"Criatividade",q:"Ter liberdade para criar e fazer as coisas do meu jeito.",dica:"Além das áreas artísticas, criatividade é valorizada em arquitetura, marketing, desenvolvimento de produtos, ensino e empreendedorismo."},
+ {k:"aut",n:"Autonomia",q:"Ser meu próprio chefe ou ter meu próprio negócio.",dica:"Quase toda profissão permite atuar como autônomo ou abrir empresa (o MEI é um bom começo). Aprender o básico de gestão e finanças ajuda em qualquer carreira."},
+ {k:"fam",n:"Ficar perto da família",q:"Continuar morando na minha cidade ou perto da minha família.",dica:"A região tem UFES e IFES em Alegre, com cursos públicos e gratuitos (veja as marcações nos cursos), além de opções a distância (EaD). Olhe primeiro os cursos oferecidos perto de você."},
+ {k:"tem",n:"Tempo livre",q:"Ter horário flexível e tempo para minha vida pessoal.",dica:"Plantões, comércio e algumas áreas da saúde têm horários pesados. Profissões com trabalho remoto ou horário comercial fixo dão mais previsibilidade."},
+ {k:"apr",n:"Aprender sempre",q:"Ter desafios novos e estar sempre aprendendo.",dica:"Pesquisa, tecnologia, saúde e engenharias mudam rápido e exigem estudo contínuo. Pós-graduação gratuita também existe nas universidades públicas da região."}
+];
+const OPT_I=[["0","Não tem nada a ver comigo"],["1","Às vezes / mais ou menos"],["2","Tem tudo a ver comigo"]];
+const OPT_V=[["0","Pouco importante para mim"],["1","Importante"],["2","Muito importante"]];
+const Q=[];for(let i=0;i<8;i++)AREAS.forEach(a=>Q.push({k:a.k,t:a.items[i]}));
+const NI=Q.length, NV=VALORES.length, NT=NI+NV;
+
+/* ---------- ESTADO ---------- */
+const $=id=>document.getElementById(id);
+const KEY="teste-vocacional-v2", PKEY="tv-painel-v1";
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function blank(){return{nome:"",turma:"",i:0,r:Array(NI).fill(null),v:Array(NV).fill(null),t0:Date.now(),tempo:0,ok:false,plano:["","",""]}}
+let st=blank();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function load(){try{const v=JSON.parse(localStorage.getItem(KEY));if(v&&Array.isArray(v.r)&&v.r.length===NI&&Array.isArray(v.v))return v}catch(e){}return null}
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("on",s.id===id));$("main").classList.toggle("wide",id==="s-prof");window.scrollTo(0,0)}
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1800)}
+
+const prev=load();
+if(prev&&(prev.r.some(x=>x!==null))){$("continuar").hidden=false;$("nome").value=prev.nome||"";$("turma").value=prev.turma||""}
+$("comecar").onclick=()=>{
+  const n=$("nome").value.trim(),t=$("turma").value.trim();
+  if(!n||!t){$("erroNome").hidden=false;return}
+  $("erroNome").hidden=true;
+  st=blank();st.nome=n;st.turma=t;save();render();show("s-teste")};
+$("continuar").onclick=()=>{
+  st=prev;st.nome=$("nome").value.trim()||st.nome;st.turma=$("turma").value.trim()||st.turma;st.plano=st.plano||["","",""];
+  const a=all();if(a.every(x=>x!==null))check();else{st.i=a.indexOf(null);render();show("s-teste")}};
+const all=()=>st.r.concat(st.v);
+$("voltar").onclick=()=>{if(st.i===0)show("s-inicio");else{st.i--;render()}};
+$("iniciarP2").onclick=()=>{render();show("s-teste")};
+$("refazer").onclick=()=>{if(!confirm("Apagar suas respostas e começar de novo?"))return;try{localStorage.removeItem(KEY)}catch(e){};$("continuar").hidden=true;$("nome").value="";$("turma").value="";show("s-inicio")};
+$("imprimir").onclick=()=>{document.querySelectorAll("#s-result details").forEach(d=>d.open=true);window.print()};
+
+let lock=false;
+function render(){
+  const inV=st.i>=NI, idx=inV?st.i-NI:st.i;
+  $("part").textContent=inV?"Parte 2: valores":"Parte 1: interesses";
+  $("count").textContent=`${st.i+1} de ${NT}`;
+  $("prog").style.width=(st.i/NT*100)+"%";
+  $("q").textContent=inV?VALORES[idx].q:Q[idx].t;
+  const cur=inV?st.v[idx]:st.r[idx];
+  $("opts").innerHTML="";
+  (inV?OPT_V:OPT_I).forEach(([v,l])=>{const b=document.createElement("button");b.className="opt"+(cur===+v?" sel":"");
+    b.innerHTML=`<span class="dot">${v}</span><span>${l}</span>`;
+    b.onclick=()=>{if(lock)return;lock=true;if(inV)st.v[idx]=+v;else st.r[idx]=+v;save();b.classList.add("sel");
+      setTimeout(()=>{lock=false;
+        if(st.i===NI-1&&st.v.every(x=>x===null)){st.i++;save();show("s-parte2");return}
+        if(st.i<NT-1){st.i++;save();render()}
+        else check();
+      },220)};
+    $("opts").appendChild(b)});
+}
+
+/* ---------- CONSISTÊNCIA ---------- */
+function flags(){
+  const f=[];const c=[0,0,0];st.r.forEach(x=>c[x]++);
+  if(Math.max(...c)>=43)f.push("iguais");
+  if(st.tempo&&st.tempo<150)f.push("rapido");
+  return f;
+}
+function check(){
+  if(!st.tempo){st.tempo=Math.round((Date.now()-st.t0)/1000);save()}
+  const f=flags();
+  if(f.length&&!st.ok){
+    const iguais=f.includes("iguais");
+    $("alertaTit").textContent=iguais?"Suas respostas ficaram quase todas iguais":"Você respondeu muito rápido";
+    $("alertaTxt").textContent=iguais?"Quando quase tudo recebe a mesma nota, o teste não consegue mostrar o que é mais forte em você. Que tal revisar e pensar com calma em cada frase?":"Você respondeu as 58 frases em menos de dois minutos e meio. Talvez algumas tenham sido marcadas sem ler direito. Vale a pena revisar.";
+    show("s-alerta");return}
+  result();
+}
+$("revisar").onclick=()=>{st.i=0;st.ok=true;st.tempo=0;st.t0=Date.now();save();render();show("s-teste")};
+$("verMesmo").onclick=()=>{st.ok=true;save();result()};
+
+/* ---------- RESULTADO ---------- */
+function scoresOf(r){const s={};AREAS.forEach(a=>s[a.k]=0);Q.forEach((q,i)=>s[q.k]+=r[i]||0);return s}
+function orderOf(s){return[...AREAS].sort((a,b)=>s[b.k]-s[a.k]||AREAS.indexOf(a)-AREAS.indexOf(b))}
+const pairKey=(a,b)=>[a,b].sort((x,y)=>"RIASEC".indexOf(x)-"RIASEC".indexOf(y)).join("");
+function topValores(v){return VALORES.map((x,i)=>({...x,s:v[i]})).filter(x=>x.s===2).concat(VALORES.map((x,i)=>({...x,s:v[i]})).filter(x=>x.s===1)).slice(0,3)}
+const salLink=p=>`https://www.google.com/search?q=${encodeURIComponent("salário "+p+" CAGED 2026")}`;
+const tags=l=>l.map(t=>`<span class="tag">${t}</span>`).join(" ");
+
+function result(){
+  const s=scoresOf(st.r), ord=orderOf(s), top=ord.slice(0,2), rest=ord.slice(2);
+  $("who").textContent=[st.nome,st.turma].filter(Boolean).join(", ");
+  const f=flags();
+  $("flagBox").hidden=!f.length;
+  $("flagTxt").textContent=f.includes("iguais")?"Suas respostas ficaram muito parecidas entre si. Leia o resultado com cuidado e, se puder, refaça o teste com calma.":"Você respondeu muito rápido. Leia o resultado com cuidado e, se algo não fizer sentido, refaça o teste com calma.";
+  $("code").innerHTML=top.map(a=>`<span style="background:var(--${a.k})">${a.k}</span>`).join("");
+  $("codecap").textContent=top.map(a=>`${a.n} (${a.apel})`).join(" + ");
+  // radar
+  const cx=180,cy=165,R=120,pts=(r,i)=>{const g=-Math.PI/2+i*Math.PI/3;return[cx+r*Math.cos(g),cy+r*Math.sin(g)]};
+  let g="";
+  [.25,.5,.75,1].forEach(k=>{g+=`<polygon points="${AREAS.map((_,i)=>pts(R*k,i).join(",")).join(" ")}" fill="none" stroke="var(--line)" stroke-width="1.5"/>`});
+  AREAS.forEach((a,i)=>{const[x,y]=pts(R,i);g+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--line)"/>`});
+  g+=`<polygon points="${AREAS.map((a,i)=>pts(R*Math.max(s[a.k],.3)/16,i).join(",")).join(" ")}" fill="var(--ink)" fill-opacity=".12" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>`;
+  AREAS.forEach((a,i)=>{const[x,y]=pts(R*Math.max(s[a.k],.3)/16,i);g+=`<circle cx="${x}" cy="${y}" r="6" fill="var(--${a.k})"/>`;
+    const[lx,ly]=pts(R+30,i);g+=`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="22" fill="var(--${a.k})">${a.k}</text>`});
+  $("radar").innerHTML=g;
+  $("rows").innerHTML=AREAS.map(a=>`<div class="row"><span>${a.n}</span><span class="track"><i style="width:${s[a.k]/16*100}%;background:var(--${a.k})"></i></span><b>${s[a.k]}/16</b></div>`).join("");
+  const pk=pairKey(top[0].k,top[1].k);
+  const tie=s[ord[2].k]===s[top[1].k];
+  $("combo").innerHTML=`<h3>Cursos no encontro de ${top[0].n} e ${top[1].n}</h3><p>${COMBO[pk]}</p>`+(tie?`<p class="muted small">Houve empate entre algumas áreas. Leia também os perfis empatados logo abaixo.</p>`:"");
+  const tv=topValores(st.v);
+  $("valores").innerHTML=`<h3>O que você mais valoriza numa profissão</h3>`+(tv.length?`<div class="chips">${tv.map(x=>`<span class="chip">${x.n}</span>`).join("")}</div><ul class="tips">${tv.map(x=>`<li><b>${x.n}:</b> ${x.dica}</li>`).join("")}</ul>`:`<p class="muted">Você marcou todos os valores como pouco importantes. Pense no que faria você acordar feliz para trabalhar.</p>`);
+  const card=a=>`<p>${a.como}</p>
+    <h4>Cursos superiores</h4><ul class="courses">${a.sup.map(([n,d,o,p])=>`<li><span class="cn">${n}</span><span class="dur">${d}</span>${tags(o)}<a href="${salLink(p)}" target="_blank" rel="noopener">ver salário</a></li>`).join("")}</ul>
+    <h4>Cursos técnicos</h4><ul class="courses">${a.tec.map(([n,o])=>`<li><span class="cn">${n}</span><span class="dur">1,5 a 2 anos</span>${tags(o)}</li>`).join("")}</ul>
+    <h4>Profissões</h4><p class="muted">${a.prof}</p>`;
+  $("fortes").innerHTML=top.map(a=>`<div class="prof" style="--c:var(--${a.k})"><h3>${a.n} (${a.apel}): ${s[a.k]}/16</h3>${card(a)}</div>`).join("");
+  $("outras").innerHTML=rest.map(a=>`<details class="prof" style="--c:var(--${a.k})"><summary>${a.n} (${a.apel}): ${s[a.k]}/16</summary>${card(a)}</details>`).join("");
+  ["p1","p2","p3"].forEach((id,i)=>{const el=$(id);el.value=st.plano[i]||"";el.oninput=()=>{st.plano[i]=el.value;save();updShare()}});
+  updShare();
+  show("s-result");
+}
+
+/* ---------- ENVIO ---------- */
+function b64e(o){const b=new TextEncoder().encode(JSON.stringify(o));let s="";b.forEach(x=>s+=String.fromCharCode(x));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+function b64d(t){t=t.replace(/-/g,"+").replace(/_/g,"/");while(t.length%4)t+="=";const s=atob(t);return JSON.parse(new TextDecoder().decode(Uint8Array.from(s,c=>c.charCodeAt(0))))}
+function shareText(){
+  const s=scoresOf(st.r),top=orderOf(s).slice(0,2),tv=topValores(st.v);
+  const data={n:st.nome,t:st.turma,s:AREAS.map(a=>s[a.k]),v:st.v,f:flags(),p:st.plano.map(x=>(x||"").trim()),d:new Date().toISOString().slice(0,10),tm:st.tempo};
+  return `Teste Vocacional: ${st.nome} (${st.turma})\nCódigo: ${top.map(a=>a.k).join("")} (${top.map(a=>a.n).join(" + ")})\n`+
+   AREAS.map(a=>`${a.n}: ${s[a.k]}/16`).join("\n")+
+   (tv.length?`\nValores: ${tv.map(x=>x.n).join(", ")}`:"")+
+   `\n\n[TV1.${b64e(data)}]`;
+}
+function updShare(){$("zap").href="https://wa.me/?text="+encodeURIComponent(shareText())}
+$("copiar").onclick=()=>{const t=shareText();if(navigator.clipboard)navigator.clipboard.writeText(t).then(()=>toast("Resultado copiado"),()=>prompt("Copie o resultado:",t));else prompt("Copie o resultado:",t)};
+
+/* ---------- PROFESSOR ---------- */
+let P=[];try{P=JSON.parse(localStorage.getItem(PKEY))||[]}catch(e){P=[]}
+const saveP=()=>{try{localStorage.setItem(PKEY,JSON.stringify(P))}catch(e){}};
+let filtro="",ordem={col:"nome",dir:1};
+$("irProf").onclick=()=>{renderPainel();show("s-prof")};
+$("profVoltar").onclick=()=>show("s-inicio");
+$("addRes").onclick=()=>{
+  const txt=$("cola").value;const re=/TV1\.([A-Za-z0-9_-]{20,})/g;let m,novos=0,atual=0,erro=0;
+  while((m=re.exec(txt))){try{const d=b64d(m[1]);if(!d.n||!Array.isArray(d.s)||d.s.length!==6)throw 0;
+      const key=(d.n+"|"+d.t).toLowerCase().trim();const i=P.findIndex(x=>(x.n+"|"+x.t).toLowerCase().trim()===key);
+      if(i>=0){P[i]=d;atual++}else{P.push(d);novos++}}catch(e){erro++}}
+  saveP();$("cola").value="";
+  $("addMsg").textContent=(novos+atual)?`${novos} novo(s), ${atual} atualizado(s)${erro?`, ${erro} com erro`:""}.`:"Nenhum resultado encontrado no texto colado.";
+  renderPainel()};
+function rowInfo(d){const s={};AREAS.forEach((a,i)=>s[a.k]=d.s[i]);const o=orderOf(s);return{s,code:o[0].k+o[1].k,dom:o[0].k,val:topValores(d.v||[]).map(x=>x.n)}}
+function renderPainel(){
+  const turmas=[...new Set(P.map(d=>d.t))].sort();
+  if(filtro&&!turmas.includes(filtro))filtro="";
+  const L=P.filter(d=>!filtro||d.t===filtro);
+  if(!P.length){$("painel").innerHTML=`<div class="box" style="margin-top:22px">Nenhum resultado ainda. Peça aos alunos que toquem em <b>Enviar para o professor pelo WhatsApp</b> no final do teste e depois cole as mensagens aqui.</div>`;return}
+  const inf=L.map(d=>({d,...rowInfo(d)}));
+  const dom={};AREAS.forEach(a=>dom[a.k]=0);inf.forEach(x=>dom[x.dom]++);
+  const med={};AREAS.forEach((a,i)=>med[a.k]=L.length?L.reduce((t,d)=>t+d.s[i],0)/L.length:0);
+  const alertas=inf.filter(x=>(x.d.f||[]).length).length;
+  const vc={};VALORES.forEach(v=>vc[v.n]=0);inf.forEach(x=>x.val.forEach(n=>vc[n]++));
+  const vtop=Object.entries(vc).sort((a,b)=>b[1]-a[1]).filter(x=>x[1]>0).slice(0,3);
+  const maxDom=Math.max(1,...Object.values(dom));
+  const col=ordem.col;
+  inf.sort((a,b)=>{let x,y;if(col==="nome"){x=a.d.n.toLowerCase();y=b.d.n.toLowerCase()}else if(col==="turma"){x=a.d.t;y=b.d.t}else if(col==="code"){x=a.code;y=b.code}else if(col==="flag"){x=(a.d.f||[]).length;y=(b.d.f||[]).length}else{const i="RIASEC".indexOf(col);x=a.d.s[i];y=b.d.s[i]}return(x>y?1:x<y?-1:0)*ordem.dir});
+  const th=(c,l)=>`<th data-c="${c}">${l}${ordem.col===c?(ordem.dir>0?" ▲":" ▼"):""}</th>`;
+  $("painel").innerHTML=`
+  <div class="toolbar noprint">
+    <div><label for="fTurma" style="margin-top:0">Turma</label><select id="fTurma"><option value="">Todas as turmas</option>${turmas.map(t=>`<option ${t===filtro?"selected":""}>${esc(t)}</option>`).join("")}</select></div>
+    <button id="csv">Baixar planilha (CSV)</button>
+    <button id="imprP">Imprimir</button>
+    <button id="limpar">Apagar dados</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>${L.length}</b><span>aluno(s)</span></div>
+    <div class="stat"><b style="color:${alertas?"var(--warn)":"inherit"}">${alertas}</b><span>com respostas suspeitas</span></div>
+    <div class="stat"><b>${orderOf(dom)[0].k}</b><span>área dominante mais comum</span></div>
+    <div class="stat"><b style="font-size:18px;line-height:1.3">${vtop.map(x=>esc(x[0])).join(", ")||"—"}</b><span>valores mais citados</span></div>
+  </div>
+  <div class="panel"><h3>Área mais forte de cada aluno</h3>
+   ${AREAS.map(a=>`<div class="row"><span>${a.n}</span><span class="track"><i style="width:${dom[a.k]/maxDom*100}%;background:var(--${a.k})"></i></span><b>${dom[a.k]}</b></div>`).join("")}
+   <h3 style="margin-top:18px">Média da turma por área</h3>
+   ${AREAS.map(a=>`<div class="row"><span>${a.n}</span><span class="track"><i style="width:${med[a.k]/16*100}%;background:var(--${a.k})"></i></span><b>${med[a.k].toFixed(1)}</b></div>`).join("")}
+  </div>
+  <div class="tablewrap"><table>
+   <thead><tr>${th("nome","Aluno")}${th("turma","Turma")}${th("code","Código")}${AREAS.map(a=>th(a.k,a.k)).join("")}<th>Valores</th>${th("flag","Alerta")}</tr></thead>
+   <tbody>${inf.map(x=>{const f=x.d.f||[];const pl=(x.d.p||[]).filter(Boolean);
+     return`<tr><td><b>${esc(x.d.n)}</b>${pl.length?`<details class="plan"><summary>Plano de ação</summary>${(x.d.p||[]).map((t,i)=>t?`<div>${["Pesquisar","Conversar com","Fazer"][i]}: ${esc(t)}</div>`:"").join("")}</details>`:""}</td>
+     <td>${esc(x.d.t)}</td><td><span class="codepill">${x.code.split("").map(k=>`<span style="background:var(--${k})">${k}</span>`).join("")}</span></td>
+     ${AREAS.map((a,i)=>`<td class="num ${x.code.includes(a.k)?"hi":""}">${x.d.s[i]}</td>`).join("")}
+     <td class="small">${esc(x.val.join(", "))}</td>
+     <td class="flag small">${f.map(z=>z==="iguais"?"respostas iguais":"rápido demais").join(", ")}</td></tr>`}).join("")}</tbody>
+  </table></div>
+  <p class="muted small">Toque no título de uma coluna para ordenar. Em negrito, as duas áreas mais fortes de cada aluno.</p>`;
+  $("fTurma").onchange=e=>{filtro=e.target.value;renderPainel()};
+  document.querySelectorAll("#painel th[data-c]").forEach(t=>t.onclick=()=>{const c=t.dataset.c;ordem=ordem.col===c?{col:c,dir:-ordem.dir}:{col:c,dir:c==="nome"||c==="turma"||c==="code"?1:-1};renderPainel()});
+  $("imprP").onclick=()=>{document.querySelectorAll("#painel details").forEach(d=>d.open=true);window.print()};
+  $("limpar").onclick=()=>{if(!confirm(filtro?`Apagar os resultados da turma ${filtro}?`:"Apagar todos os resultados deste aparelho?"))return;P=filtro?P.filter(d=>d.t!==filtro):[];filtro="";saveP();renderPainel()};
+  $("csv").onclick=()=>exportCSV(L);
+}
+async function exportCSV(L){
+  const q=v=>`"${String(v??"").replace(/"/g,'""')}"`;
+  const head=["Aluno","Turma","Data","Código",...AREAS.map(a=>a.n),...VALORES.map(v=>v.n),"Alerta","Tempo (s)","Pesquisar","Conversar com","Fazer"];
+  const rows=L.map(d=>{const x=rowInfo(d);return[d.n,d.t,d.d,x.code,...d.s,...(d.v||[]),(d.f||[]).join(" "),d.tm||"",...(d.p||["","",""])].map(q).join(";")});
+  const csv="\uFEFF"+[head.map(q).join(";"),...rows].join("\r\n");
+  const nome=`teste-vocacional${filtro?"-"+filtro.replace(/[^\w-]+/g,"_"):""}.csv`;
+  const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  const a=document.createElement("a");a.href=url;a.download=nome;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);toast("Planilha baixada");
+}
+</script>
+</body>
+</html>
